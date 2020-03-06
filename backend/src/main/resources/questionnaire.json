@@ -1,0 +1,62 @@
+{
+  "sections": [
+    {
+      "id": -1.0,
+      "title": "Questionnaire Demo",
+      "questions": [
+        1.0
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": 1.0,
+      "prompt": "Do you like questionnaires?",
+      "type": "RADIO",
+      "responses": [
+        {
+          "id": 1,
+          "display": "Yes",
+          "children": [2.0]
+        },
+        {
+          "id": 2,
+          "display": "No",
+          "children": [3.0]
+        }
+      ]
+    },
+    {
+      "id": 2.0,
+      "prompt": "We like them too!",
+      "type": "PROMPT"
+    },
+    {
+      "id": 3.0,
+      "prompt": "Is there anything we can do to change your opinion?",
+      "type": "RADIO",
+      "responses": [
+        {
+          "id": 1,
+          "display": "Yes",
+          "children": [4.0]
+        },
+        {
+          "id": 2,
+          "display": "No",
+          "children": [5.0]
+        }
+      ]
+    },
+    {
+      "id": 4.0,
+      "prompt": "Great!",
+      "type": "PROMPT"
+    },
+    {
+      "id": 5.0,
+      "prompt": "You should be ashamed.",
+      "type": "PROMPT"
+    }
+  ]
+}
