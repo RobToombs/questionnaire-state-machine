@@ -1,0 +1,10 @@
+.idea/
+backend/.gradle/
+backend/build/
+backend/gradlew.bat
+frontend/elm-stuff/
+frontend/node_modules/
+frontend/package-lock.json
+node_modules/
+package-lock.json
+questionnaire-demo.iml
