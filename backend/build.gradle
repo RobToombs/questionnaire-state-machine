@@ -1,18 +1,27 @@
-apply plugin:'java'
-apply plugin:'application'
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
 
 group "com.toombs"
 version "1.0.0"
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-web:2.2.4.RELEASE"
-    compile "org.springframework.boot:spring-boot-starter-actuator:2.2.4.RELEASE"
-    compile "uk.com.robust-it:cloning:1.9.12"
-    compile "net.minidev:json-smart:2.3"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'uk.com.robust-it:cloning:1.9.12'
+    implementation 'net.minidev:json-smart:2.3'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
-mainClassName = 'com.toombs.Application'
+test {
+    useJUnitPlatform()
+}
