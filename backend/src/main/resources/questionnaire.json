@@ -45,6 +45,11 @@
           "id": 2,
           "display": "No",
           "children": [5.0]
+        },
+        {
+          "id": 3,
+          "display": "Maybe",
+          "children": [6.0]
         }
       ]
     },
@@ -56,6 +61,11 @@
     {
       "id": 5.0,
       "prompt": "You should be ashamed.",
+      "type": "PROMPT"
+    },
+    {
+      "id": 6.0,
+      "prompt": "'Maybe' won't cut it.",
       "type": "PROMPT"
     }
   ]

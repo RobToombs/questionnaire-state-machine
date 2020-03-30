@@ -23,7 +23,7 @@ public class TemplateReader {
     private static final String PROMPT = "prompt";
     private static final String RESPONSES = "responses";
     private static final String DISPLAY = "display";
-    private static final String CHLDREN = "children";
+    private static final String CHILDREN = "children";
     private static final String SECTIONS = "sections";
     private static final String TITLE = "title";
 
@@ -88,8 +88,8 @@ public class TemplateReader {
                 responseOption.setId((Integer) responseJSON.get(ID));
                 responseOption.setDisplay(String.valueOf(responseJSON.get(DISPLAY)));
 
-                if(responseJSON.containsKey(CHLDREN)) {
-                    JSONArray childIds = (JSONArray) responseJSON.get(CHLDREN);
+                if(responseJSON.containsKey(CHILDREN)) {
+                    JSONArray childIds = (JSONArray) responseJSON.get(CHILDREN);
                     childIds.forEach(id -> {
                         if (questionPool.containsKey(id)) {
                             responseOption.addChild(questionPool.get(id));

@@ -21,29 +21,40 @@ public class QuestionnaireService {
 
     public QuestionnaireService() {
         TemplateReader reader = new TemplateReader();
+
+        // Generate our static in-memory Questionnaire template from the json representation
         template = reader.generateQuestionnaireTemplate(QUESTIONNAIRE_FILE);
     }
 
     public Questionnaire generateNextQuestionnaire(Questionnaire currentQuestionnaire) {
-        QuestionnaireTree qtClone = cloner.deepClone(template);
+        // Create a deep copy of our questionnaire template
+        QuestionnaireTree templateCopy = cloner.deepClone(template);
 
         if (currentQuestionnaire != null) {
-            updateTreeSectionsFromFlatSections(qtClone, currentQuestionnaire.getSections());
+
+            // Create a mapping of section id/section for O(1) access time
+            LinkedHashMap<Double, Section> sectionMap = new LinkedHashMap<>();
+            for (Section section : currentQuestionnaire.getSections()) {
+                sectionMap.put(section.getId(), section);
+            }
+
+            // Generate the next questionnaire iteration based off our template and the questionnaire we're receiving
+            updateTreeSectionsFromFlatSections(templateCopy, sectionMap);
         }
 
-        return flattenTreeSections(qtClone);
+        // Flatten the questionnaire for simplified frontend consumption
+        return flattenTreeSections(templateCopy);
     }
 
-    private void updateTreeSectionsFromFlatSections(QuestionnaireTree wcClone, ArrayList<Section> sections) {
-        wcClone.getSections().forEach((id, treeSection) -> {
-            Section section = sections.stream()
-                    .filter(s -> s.getId() == id)
-                    .findFirst()
-                    .orElse(null);
+    private void updateTreeSectionsFromFlatSections(QuestionnaireTree template,  LinkedHashMap<Double, Section> sectionMap) {
+        template.getSections().forEach((id, treeSection) ->
+        {
+            // Does the incoming questionnaire contain this template section?
+            if (sectionMap.containsKey(id)) {
 
-            if (section != null) {
+                // Create a mapping of question id/question for O(1) access time
                 LinkedHashMap<Double, Question> questionMap = new LinkedHashMap<>();
-                for (Question question : section.getQuestions()) {
+                for (Question question : sectionMap.get(id).getQuestions()) {
                     questionMap.put(question.getId(), question);
                 }
 
@@ -53,8 +64,12 @@ public class QuestionnaireService {
     }
 
     private void updateTreeQuestionsFromFlatQuestions(LinkedHashMap<Double, QuestionTree> treeQuestions, LinkedHashMap<Double, Question> questionMap) {
-        treeQuestions.forEach((id, treeQuestion) -> {
+        treeQuestions.forEach((id, treeQuestion) ->
+        {
+            // Does the incoming questionnaire contain this template question?
             if (questionMap.containsKey(id)) {
+
+                // Create a mapping of response id/response for O(1) access time
                 LinkedHashMap<Integer, Response> responseMap = new LinkedHashMap<>();
                 for (Response response : questionMap.get(id).getResponses()) {
                     responseMap.put(response.getId(), response);
@@ -66,11 +81,16 @@ public class QuestionnaireService {
     }
 
     private void updateTreeResponsesFromFlatResponses(LinkedHashMap<Integer, ResponseTree> treeResponses, LinkedHashMap<Integer, Response> responseMap, LinkedHashMap<Double, Question> questionMap) {
-        treeResponses.forEach((id, treeResponse) -> {
+        treeResponses.forEach((id, treeResponse) ->
+        {
+            // Does the incoming responses contain this template response?
             if(responseMap.containsKey(id)) {
                 Response flatResponse = responseMap.get(id);
+
+                // Update the template response option with the incoming response selection
                 treeResponse.setSelected(flatResponse.getSelected());
 
+                // Update the child questions if selected
                 if(treeResponse.getSelected()) {
                     updateTreeQuestionsFromFlatQuestions(treeResponse.getChildren(), questionMap);
                 }
