@@ -1,4 +1,4 @@
-The purpose of this project is to create an end-to-end application using SpringBoot and Elm. The application is a questionnaire state machine, where provided any state of valid questionnaire, will return the next iteration of the questionnaire. It is extremely basic in that there are only two answerable questions of RADIO and PROMPT types, but is very extensible in its current state.
+The purpose of this project is to create an end-to-end questionnaire state machine. This state machine represents the fundamental principle behind our questionnaire engine in that when provided any state of a questionnaire, it will return the next valid questionnaire state. 
 
 -------------------------------------------------------------------------------------------------------------------
 You will need Node, Gradle, and Java installed on your machine to get this working.
@@ -13,3 +13,15 @@ Once Tomcat and the Webpack Dev Server are up and running, go to http://localhos
 
 -------------------------------------------------------------------------------------------------------------------
 STEP 1:
+Get the application working!
+
+1. git clone https://github.com/RobToombs/questionnaire-state-machine.git
+2. cd questionnaire-state-machine
+3. npm install
+4. cd frontend
+5. npm install
+6. cd ..
+7. npm run start-m (if you're on a windows machine: npm run start-w)
+8. go to: http://localhost:9000/
+
+If it takes more than this, then I apologize.
