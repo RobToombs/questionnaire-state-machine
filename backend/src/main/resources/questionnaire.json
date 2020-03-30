@@ -65,7 +65,19 @@
     },
     {
       "id": 6.0,
-      "prompt": "'Maybe' won't cut it.",
+      "prompt": "That's a start! What can we do?",
+      "type": "RADIO",
+      "responses": [
+        {
+          "id": 1,
+          "display": "I don't know",
+          "children": [7.0]
+        }
+      ]
+    },
+    {
+      "id": 7.0,
+      "prompt": "WHAT DO YOU MEAN YOU DON'T KNOW?!?",
       "type": "PROMPT"
     }
   ]
