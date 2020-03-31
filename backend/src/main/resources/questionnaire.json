@@ -6,6 +6,13 @@
       "questions": [
         1.0
       ]
+    },
+    {
+      "id": -2.0,
+      "title": "Final Section",
+      "questions": [
+        8.0
+      ]
     }
   ],
   "questions": [
@@ -78,6 +85,33 @@
     {
       "id": 7.0,
       "prompt": "WHAT DO YOU MEAN YOU DON'T KNOW?!?",
+      "type": "PROMPT"
+    },
+    {
+      "id": 8.0,
+      "prompt": "Do you like questionnaires now?",
+      "type": "RADIO",
+      "responses": [
+        {
+          "id": 1,
+          "display": "Yes",
+          "children": [9.0]
+        },
+        {
+          "id": 2,
+          "display": "No",
+          "children": [10.0]
+        }
+      ]
+    },
+    {
+      "id": 9.0,
+      "prompt": "I knew you would!",
+      "type": "PROMPT"
+    },
+    {
+      "id": 10.0,
+      "prompt": "Then you are hopeless.",
       "type": "PROMPT"
     }
   ]
