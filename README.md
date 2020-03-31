@@ -27,22 +27,23 @@ If it takes more than this, then I apologize.
 
 \
 STEP 2: JSON Template Format
+
 The questionnaire JSON template is separated into two parts:
-1. Sections - Sections are all located (not unsurprisingly!) in the "sections" list parameter. They all must be identified with a negative id and will appear on screen in the same order as they are listed in the template file from top to bottom.
+1. Sections - Sections are all located (not unsurprisingly!) in the "sections" list parameter. They are identified with a negative id and will appear on screen in the order that they are listed in the template file.
  
     **Try moving the "Final Section" before the "Question Demo" section!** 
     
-2. Questions - Questions are located within the "questions" list parameter. They are all identified by a positive decimal id and the order does not matter as long as question leaf nodes are appear after their respective internal and root node questions. The reasoning behind this is because the template reader creates the questionnaire blueprint from the leaves to root and must know about the children before assigning them to their parent questions. 
+2. Questions - Questions are located within the "questions" list parameter. They are identified by a positive decimal id and the order does not matter as long as question leaf nodes are appear after their respective internal and root node questions. The reasoning behind this is because the template reader creates the questionnaire template from leaf to root and must know about the children before assigning them to their parent questions. 
     
-    Questions are added to sections by adding the question id to the section's "questions" parameter. The questions will be listed in this order within the section.
+    Questions are added to sections by adding the question id to the section's "questions" parameter and will appear in the listed order.
     
-    In TRx2.0 questions have a plethora of possible parameters and types, but in this application they can only be "Prompts" or "Radio" buttons. TRx2.0 also contains the concept of medication based questions which are dynamically created under the "root" question filling out the question id decimal point. For example, if question 2.0 was designated a medication based question, the med based questions would appear as 2.1, 2.2, 2.3, etc. 
+    In TRx2.0 questions have a plethora of possible parameters and types, but in this application they can only be "Prompts" or "Radio" buttons. TRx2.0 also contains the concept of medication based questions, which are dynamically created under the "root" question filling out the question id decimal point. For example, if question 3.0 was designated a medication based question, the med based questions would appear as 3.1, 3.2, 3.3, etc. 
     
    **Try adding an additional question to the "Final Section"!** 
    
-3. Responses - Responses are located within a question's "responses" list parameter. They appear in the order that they are listed and have an integer id. The "children" parameter contains the ids of questions to show when that response is selected much like the section's "questions" parameter.
+3. Responses - Responses are located within a question's "responses" list parameter. They appear in the order that they are listed and have an integer id. The "children" parameter contains the ids of questions to show when that response is selected.
 
-    In TRx2.0, response options can reference both section ids and question id with varying differences, hence the need to distinguish between sections and question ids. This application does not currently support this.
+    In TRx2.0, response options can reference both section ids and question ids with varying differences, hence the need to distinguish between section and question ids. This application does not currently support this behaviour.
     
     **Try adding an additional response to question id = 6.0!**
     
@@ -74,3 +75,5 @@ This demo questionnaire only has two question types, 'PROMPT' and 'RADIO', but a
     4. Update the Update.elm to handle response selections appropriately. Radio buttons only allow a single selection per question, Checkboxes allow multiple selections, and Prompts have nothing to select! How should the new question type behave onBlur? What about onInput?
     
    **Try implementing a Checkbox or Input box question!**
+   
+   
