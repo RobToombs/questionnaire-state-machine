@@ -1,7 +1,7 @@
 The purpose of this project is to create an end-to-end questionnaire state machine. This state machine represents the fundamental principle behind our questionnaire engine in that when provided any state of a questionnaire, it will return the next valid questionnaire state. 
 
 -------------------------------------------------------------------------------------------------------------------
-You will need Node, Gradle, and Java installed on your machine to get this working.
+You will need Node and Java installed on your machine to get this working.
 
 Windows:\
 Run "npm run start-w", to run the frontend/backend independently start up the webpack devServer with "npm run start:frontend" and tomcat with "npm run start:backend-w" or any IDE that supports SpringBoot applications.  
